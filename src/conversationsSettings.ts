@@ -11,20 +11,23 @@ export class ConversationsSettingsTab extends PluginSettingTab {
 
     display(): void {
         let { containerEl } = this;
+        populate_settings(containerEl, this.plugin);
+    }
+}
 
-        containerEl.empty();
+function populate_settings(container_element: HTMLElement, plugin: ConversationsPlugin): void {
+    container_element.empty();
 
-        new Setting(containerEl)
+    new Setting(container_element)
       .setName('Date format')
       .setDesc('Default date format')
       .addText((text) =>
         text
           .setPlaceholder('MMMM dd, yyyy')
-          .setValue(this.plugin.settings.dateFormat)
+          .setValue(plugin.settings.dateFormat)
           .onChange(async (value) => {
-            this.plugin.settings.dateFormat = value;
-            await this.plugin.saveSettings();
+            plugin.settings.dateFormat = value;
+            await plugin.saveSettings();
           })
       );
-    }
 }
