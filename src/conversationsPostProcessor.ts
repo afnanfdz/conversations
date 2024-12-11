@@ -1,6 +1,7 @@
 import { MarkdownPostProcessor, MarkdownPostProcessorContext } from "obsidian";
 
 export const ConversationsPostProcessor: MarkdownPostProcessor = (element: HTMLElement, context: MarkdownPostProcessorContext) => {
+  // ^(V:)\s.*((\n.+)*) you'll need this!
   const div_conversation = element.createDiv({
     cls: "conversationBox"
   });
